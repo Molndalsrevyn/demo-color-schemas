@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Revykanon – Color System Demo (Extended)</title>
+  <style>
+    :root {
+      --background: #1a2332;
+      --primary-accent: #d4851f;
+      --secondary-accent: #7eb3d3;
+      --text-light: #f8f9fa;
+      --text-dark: #2c3e50;
+      --surface-1: #212c3f;
+      --surface-2: #26344a;
+      --border: #34455e;
+      --muted: #a8bccb;
+      --focus-ring: rgba(126,179,211,0.55);
+      --radius: 10px;
+      --font-sans: Inter, system-ui, sans-serif;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--background);
+      color: var(--text-light);
+      margin: 0;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    h1, h2, h3 { color: var(--text-light); }
+    p { color: var(--muted); }
+
+    .section { margin-bottom: 40px; }
+
+    .demo-box {
+      background: var(--surface-1);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-top: 10px;
+    }
+
+    label { display: block; margin-bottom: 6px; font-weight: 600; }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      color: var(--text-light);
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: 2px solid var(--focus-ring);
+      border-color: var(--secondary-accent);
+    }
+
+    button {
+      background: var(--primary-accent);
+      color: var(--text-dark);
+      border: none;
+      border-radius: var(--radius);
+      padding: 10px 16px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    button:hover { background: #b9761b; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--surface-2);
+      color: var(--text-light);
+    }
+
+    th, td {
+      border: 1px solid var(--border);
+      padding: 10px;
+      text-align: left;
+    }
+
+    th { background: var(--surface-1); }
+
+    .link-demo a {
+      color: var(--secondary-accent);
+    }
+
+    .link-demo a:hover {
+      color: var(--primary-accent);
+    }
+  </style>
+</head>
+<body>
+  <h1>Revykanon Color System Demo (Extended)</h1>
+  <p>This page shows how the color scheme applies to standard HTML elements.</p>
+
+  <section class="section">
+    <h2>Form Elements</h2>
+    <div class="demo-box">
+      <form>
+        <label for="name">Name</label>
+        <input type="text" id="name" placeholder="Enter your name" />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="example@domain.com" />
+
+        <label for="role">Role</label>
+        <select id="role">
+          <option>Student</option>
+          <option>Teacher</option>
+          <option>Admin</option>
+        </select>
+
+        <label for="message">Message</label>
+        <textarea id="message" rows="4" placeholder="Write your message..."></textarea>
+
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Table Example</h2>
+    <div class="demo-box">
+      <table>
+        <thead>
+          <tr><th>Name</th><th>Status</th><th>Role</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Anna</td><td>Active</td><td>Editor</td></tr>
+          <tr><td>John</td><td>Inactive</td><td>Viewer</td></tr>
+          <tr><td>Maria</td><td>Active</td><td>Admin</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section link-demo">
+    <h2>Links</h2>
+    <div class="demo-box">
+      <p>Visit the <a href="#">official website</a> or follow us on <a href="#">social media</a>.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Buttons</h2>
+    <div class="demo-box">
+      <button>Primary Button</button>
+      <button style="background: var(--secondary-accent); color: var(--text-dark);">Secondary Button</button>
+      <button style="background: transparent; border: 1px solid var(--secondary-accent); color: var(--secondary-accent);">Outline Button</button>
+    </div>
+  </section>
+</body>
+</html>
