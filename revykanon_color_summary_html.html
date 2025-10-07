@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Revykanon – Color Summary</title>
+  <style>
+    :root{
+      --bg:#0f1115;             /* dark canvas */
+      --panel:#141824;           /* panels/cards */
+      --panel-2:#0b0e15;         /* header/footer bars */
+      --text:#ffffff;            /* primary text */
+      --muted:#cfcfcf;           /* muted text sample */
+      --accent:#74C9DA;          /* accent for UI bits */
+
+      /* Brand & partner colors from brief */
+      --white:#FFFFFF;
+      --near-white:#CFCFCF;      /* end of observed range */
+      --near-white-alt:#CCCCCC;  /* start of observed range */
+      --black:#000000;
+      --brand-yellow:#FFEB3B;    /* approx */
+      --brand-sky:#74C9DA;       /* approx */
+      --partner-magenta:#A80F64; /* approx */
+      --partner-pink:#F5A8C4;    /* accent */
+
+      --radius:18px;
+      --shadow:0 8px 24px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.02);
+      --grid-gap:18px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 800px at 80% -10%, rgba(116,201,218,.06), transparent 60%),
+                  radial-gradient(900px 700px at -10% 40%, rgba(168,15,100,.08), transparent 60%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.6;
+      letter-spacing:.2px;
+    }
+
+    header{
+      position:sticky; top:0; z-index:5;
+      background: linear-gradient(180deg, rgba(15,17,21,.9), rgba(15,17,21,.6));
+      backdrop-filter: blur(8px);
+      border-bottom:1px solid rgba(255,255,255,.05);
+    }
+
+    .wrap{max-width:1100px; margin:0 auto; padding:26px clamp(16px, 4vw, 32px)}
+
+    .title{display:flex; align-items:center; gap:14px}
+    .badge{font-size:.75rem; padding:4px 10px; border:1px solid rgba(255,255,255,.14); border-radius:999px; opacity:.85}
+
+    h1{font-size:clamp(1.4rem,2.2vw,2rem); margin:0; font-weight:700}
+    h2{font-size:1.05rem; letter-spacing:.6px; text-transform:uppercase; opacity:.9; margin:0 0 8px}
+    p{opacity:.85; margin:.25rem 0 0}
+
+    main{padding-block:14px 60px}
+
+    .section{margin-top:26px; background:linear-gradient(180deg, rgba(255,255,255,.02), transparent 60%), var(--panel); border:1px solid rgba(255,255,255,.07); border-radius:var(--radius); box-shadow:var(--shadow)}
+    .section .inner{padding:22px clamp(14px, 3.5vw, 26px)}
+
+    .grid{display:grid; grid-template-columns:repeat(12, 1fr); gap:var(--grid-gap)}
+    .col-12{grid-column:span 12}
+    @media (min-width:760px){ .col-6{grid-column:span 6} }
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.03), transparent 60%), var(--panel-2);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius);
+      padding:18px; box-shadow:var(--shadow); height:100%;
+    }
+
+    .swatch{display:flex; align-items:center; gap:14px}
+    .chip{width:54px; height:54px; border-radius:14px; border:1px solid rgba(255,255,255,.15); box-shadow: inset 0 0 0 1px rgba(255,255,255,.04), 0 8px 20px rgba(0,0,0,.3)}
+    .meta{display:flex; flex-wrap:wrap; gap:8px 12px; align-items:center}
+    .name{font-weight:700}
+    .hex{font-family: ui-monospace, SFMono-Regular, Menlo, monospace; opacity:.9}
+    .tag{font-size:.72rem; padding:4px 8px; border-radius:999px; border:1px solid rgba(255,255,255,.16); opacity:.8}
+
+    .rows{display:flex; flex-direction:column; gap:14px}
+
+    .note{font-size:.92rem; opacity:.85}
+    .kbd{font-family: ui-monospace, SFMono-Regular, Menlo, monospace; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-bottom-width:2px; padding:.2rem .45rem; border-radius:8px}
+
+    .copy{font-size:.78rem; margin-left:auto; padding:6px 10px; border-radius:10px; border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.04); cursor:pointer}
+    .copy:hover{background:rgba(255,255,255,.07)}
+
+    footer{opacity:.8; font-size:.9rem; border-top:1px dashed rgba(255,255,255,.12); margin-top:26px; padding-top:16px}
+    a{color:var(--accent); text-underline-offset:3px}
+    .legend{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="title">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="10" stroke="currentColor" opacity=".25"/>
+          <circle cx="12" cy="12" r="10" fill="url(#g)" opacity=".2"/>
+          <defs>
+            <radialGradient id="g" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(8 6) rotate(45) scale(16)">
+              <stop stop-color="var(--brand-sky)"/>
+              <stop offset="1" stop-color="var(--partner-magenta)"/>
+            </radialGradient>
+          </defs>
+        </svg>
+        <h1>Revykanon – Color Summary</h1>
+        <span class="badge">Dark UI • light text</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <section class="section">
+      <div class="inner">
+        <h2>Core UI colors (page chrome & text)</h2>
+        <p class="note">The UI renders on a dark background with light text. Exact CSS wasn’t exposed in the simplified HTML view, but the interface clearly uses white on dark and black overlays.</p>
+        <div class="grid" style="margin-top:16px">
+          <!-- White -->
+          <div class="col-12 col-6">
+            <div class="card rows">
+              <div class="swatch">
+                <div class="chip" style="background:var(--white)"></div>
+                <div class="meta"><span class="name">White</span><span class="hex">#FFFFFF</span><span class="tag">text on dark</span></div>
+                <button class="copy" data-hex="#FFFFFF">Copy</button>
+              </div>
+              <p class="note">Primary text color on dark sections.</p>
+            </div>
+          </div>
+
+          <!-- Off-white range -->
+          <div class="col-12 col-6">
+            <div class="card rows">
+              <div class="swatch">
+                <div class="chip" style="background:linear-gradient(90deg, var(--near-white-alt), var(--near-white))"></div>
+                <div class="meta"><span class="name">Off‑white / muted</span><span class="hex">#CCCCCC → #CFCFCF</span><span class="tag">placeholders, captions</span></div>
+                <button class="copy" data-hex="#CFCFCF">Copy #CFCFCF</button>
+              </div>
+              <p class="note">Observed range for muted text; use <span class="kbd">#CFCFCF</span> as the standard.</p>
+            </div>
+          </div>
+
+          <!-- Black overlays -->
+          <div class="col-12 col-6">
+            <div class="card rows">
+              <div class="swatch">
+                <div class="chip" style="background:var(--black)"></div>
+                <div class="meta"><span class="name">Black / near‑black</span><span class="hex">#000000</span><span class="tag">overlays & shadows</span></div>
+                <button class="copy" data-hex="#000000">Copy</button>
+              </div>
+              <p class="note">Often with opacity for overlays (e.g., rgba(0,0,0,0.5)).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="inner">
+        <h2>Brand & accent colors (from imagery)</h2>
+        <p class="note">These are approximations derived from site imagery (smiley, logo, underline/cannon, partner logo).</p>
+        <div class="grid" style="margin-top:16px">
+          <!-- Yellow -->
+          <div class="col-12 col-6">
+            <div class="card rows">
+              <div class="swatch">
+                <div class="chip" style="background:var(--brand-yellow)"></div>
+                <div class="meta"><span class="name">Bright Yellow</span><span class="hex">#FFEB3B</span><span class="tag">approx</span><span class="tag">logo text</span></div>
+                <button class="copy" data-hex="#FFEB3B">Copy</button>
+              </div>
+              <p class="note">Used in smiley and the “KAN…KUL” logo text.</p>
+            </div>
+          </div>
+
+          <!-- Sky/Cyan -->
+          <div class="col-12 col-6">
+            <div class="card rows">
+              <div class="swatch">
+                <div class="chip" style="background:var(--brand-sky)"></div>
+                <div class="meta"><span class="name">Light Sky/Cyan</span><span class="hex">#74C9DA</span><span class="tag">approx</span><span class="tag">smiley underline</span></div>
+                <button class="copy" data-hex="#74C9DA">Copy</button>
+              </div>
+              <p class="note">Appears in smiley highlights & cannon/underline.</p>
+            </div>
+          </div>
+
+          <!-- Magenta -->
+          <div class="col-12 col-6">
+            <div class="card rows">
+              <div class="swatch">
+                <div class="chip" style="background:var(--partner-magenta)"></div>
+                <div class="meta"><span class="name">Deep Magenta / Fuchsia</span><span class="hex">#A80F64</span><span class="tag">approx</span><span class="tag">Mölndalsrevyn</span></div>
+                <button class="copy" data-hex="#A80F64">Copy</button>
+              </div>
+              <p class="note">Primary tone in the partner logo.</p>
+            </div>
+          </div>
+
+          <!-- Light Pink -->
+          <div class="col-12 col-6">
+            <div class="card rows">
+              <div class="swatch">
+                <div class="chip" style="background:var(--partner-pink)"></div>
+                <div class="meta"><span class="name">Light Pink (accent)</span><span class="hex">#F5A8C4</span><span class="tag">accent</span></div>
+                <button class="copy" data-hex="#F5A8C4">Copy</button>
+              </div>
+              <p class="note">Used alongside the magenta in partner branding.</p>
+            </div>
+          </div>
+        </div>
+
+        <footer>
+          <div class="legend">
+            <span class="tag">approx</span>
+            <span>≈ extracted visually from imagery; tune in production if official tokens differ.</span>
+          </div>
+        </footer>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="inner">
+        <h2>Quick swatches to reference</h2>
+        <div class="grid" style="margin-top:12px">
+          <!-- Generate quick tiles -->
+          <div class="col-12">
+            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:var(--grid-gap)">
+              <div class="card swatch"><div class="chip" style="background:#FFFFFF"></div><div class="meta"><span class="name">UI text</span><span class="hex">#FFFFFF</span></div><button class="copy" data-hex="#FFFFFF">Copy</button></div>
+              <div class="card swatch"><div class="chip" style="background:#CFCFCF"></div><div class="meta"><span class="name">Muted text</span><span class="hex">#CFCFCF</span></div><button class="copy" data-hex="#CFCFCF">Copy</button></div>
+              <div class="card swatch"><div class="chip" style="background:#000000"></div><div class="meta"><span class="name">Overlays / shadows</span><span class="hex">#000000</span></div><button class="copy" data-hex="#000000">Copy</button></div>
+              <div class="card swatch"><div class="chip" style="background:#FFEB3B"></div><div class="meta"><span class="name">Brand yellow</span><span class="hex">#FFEB3B</span></div><button class="copy" data-hex="#FFEB3B">Copy</button></div>
+              <div class="card swatch"><div class="chip" style="background:#74C9DA"></div><div class="meta"><span class="name">Brand light blue</span><span class="hex">#74C9DA</span></div><button class="copy" data-hex="#74C9DA">Copy</button></div>
+              <div class="card swatch"><div class="chip" style="background:#A80F64"></div><div class="meta"><span class="name">Partner magenta</span><span class="hex">#A80F64</span></div><button class="copy" data-hex="#A80F64">Copy</button></div>
+              <div class="card swatch"><div class="chip" style="background:#F5A8C4"></div><div class="meta"><span class="name">Partner light pink</span><span class="hex">#F5A8C4</span></div><button class="copy" data-hex="#F5A8C4">Copy</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // Copy-to-clipboard for hex values
+    document.querySelectorAll('.copy').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const hex = btn.getAttribute('data-hex');
+        try{
+          await navigator.clipboard.writeText(hex);
+          const prev = btn.textContent;
+          btn.textContent = 'Copied!';
+          btn.style.opacity = 0.85;
+          setTimeout(()=>{btn.textContent = prev; btn.style.opacity=1;}, 1200);
+        }catch(e){
+          alert('Copy failed. Hex: ' + hex);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
