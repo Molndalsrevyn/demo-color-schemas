@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Revykanon – Color System Demo</title>
+    <style>
+      /* ===============================
+       Revykanon Color System (v1)
+       Based on provided palette
+       =============================== */
+
+      :root {
+        /* Core palette */
+        --background: #1a2332; /* Darker, warmer navy */
+        --primary-accent: #d4851f; /* Warm gold/amber */
+        --secondary-accent: #7eb3d3; /* Softer sky blue */
+        --text-light: #f8f9fa; /* Clean white */
+        --text-dark: #2c3e50; /* Deep slate */
+
+        /* Derived tokens */
+        --surface-1: color-mix(in oklab, var(--background) 85%, white);
+        --surface-2: color-mix(in oklab, var(--background) 75%, white);
+        --surface-3: color-mix(in oklab, var(--background) 65%, white);
+        --border: color-mix(
+          in oklab,
+          var(--background) 65%,
+          var(--secondary-accent) 35%
+        );
+        --muted: color-mix(in oklab, var(--text-light) 65%, var(--background));
+
+        /* Interactive states */
+        --primary-hover: color-mix(in oklab, var(--primary-accent) 88%, black);
+        --primary-press: color-mix(in oklab, var(--primary-accent) 76%, black);
+        --secondary-hover: color-mix(
+          in oklab,
+          var(--secondary-accent) 85%,
+          black
+        );
+        --secondary-press: color-mix(
+          in oklab,
+          var(--secondary-accent) 70%,
+          black
+        );
+        --focus-ring: color-mix(
+          in oklab,
+          var(--secondary-accent) 55%,
+          transparent
+        );
+
+        /* Semantic accents (derived) */
+        --info: var(--secondary-accent);
+        --success: color-mix(
+          in oklab,
+          var(--secondary-accent) 25%,
+          #2ecc71 75%
+        );
+        --warning: color-mix(in oklab, var(--primary-accent) 85%, #ffcc00 15%);
+        --danger: color-mix(in oklab, var(--primary-accent) 35%, #e74c3c 65%);
+
+        /* Typography */
+        --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI,
+          Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        --radius: 14px;
+        --shadow-1: 0 2px 10px rgba(0, 0, 0, 0.25);
+        --shadow-2: 0 10px 30px rgba(0, 0, 0, 0.35);
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        font-family: var(--font-sans);
+        background: var(--background);
+        color: var(--text-light);
+        line-height: 1.5;
+      }
+
+      /* Layout */
+      .wrap {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 24px;
+      }
+      header,
+      footer {
+        background: var(--surface-1);
+        border-bottom: 1px solid var(--border);
+      }
+      footer {
+        border-top: 1px solid var(--border);
+        border-bottom: none;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .brand .dot {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: var(--primary-accent);
+        box-shadow: 0 0 0 3px
+          color-mix(in oklab, var(--primary-accent) 30%, transparent);
+      }
+
+      h1,
+      h2,
+      h3 {
+        line-height: 1.2;
+        margin: 0.2em 0 0.4em;
+      }
+      h1 {
+        font-size: clamp(28px, 5vw, 40px);
+      }
+      h2 {
+        font-size: clamp(22px, 3.6vw, 28px);
+        margin-top: 28px;
+      }
+      h3 {
+        font-size: clamp(18px, 3vw, 22px);
+        margin-top: 18px;
+      }
+      p {
+        margin: 0.5em 0;
+        color: var(--muted);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 16px;
+      }
+
+      .card {
+        background: var(--surface-2);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 16px;
+        box-shadow: var(--shadow-1);
+      }
+
+      .swatch {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px;
+        border-radius: 12px;
+        border: 1px dashed var(--border);
+        background: var(--surface-3);
+      }
+      .swatch .chip {
+        width: 52px;
+        height: 52px;
+        border-radius: 12px;
+        box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.07);
+        flex: 0 0 52px;
+      }
+      .code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+        padding: 3px 8px;
+        border-radius: 8px;
+        background: color-mix(in oklab, var(--surface-1) 60%, black);
+        border: 1px solid var(--border);
+      }
+
+      .row {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      /* Buttons */
+      .btn {
+        appearance: none;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+        padding: 10px 14px;
+        border-radius: 12px;
+        box-shadow: var(--shadow-1);
+        transition: all 0.15s ease;
+      }
+      .btn:focus-visible {
+        outline: 3px solid var(--focus-ring);
+        outline-offset: 2px;
+      }
+      .btn.primary {
+        background: var(--primary-accent);
+        color: var(--text-dark);
+      }
+      .btn.primary:hover {
+        background: var(--primary-hover);
+      }
+      .btn.primary:active {
+        background: var(--primary-press);
+      }
+      .btn.secondary {
+        background: var(--secondary-accent);
+        color: var(--text-dark);
+      }
+      .btn.secondary:hover {
+        background: var(--secondary-hover);
+      }
+      .btn.secondary:active {
+        background: var(--secondary-press);
+      }
+      .btn.ghost {
+        background: transparent;
+        border: 1px solid var(--secondary-accent);
+        color: var(--text-light);
+      }
+      .btn.ghost:hover {
+        background: color-mix(
+          in oklab,
+          var(--secondary-accent) 18%,
+          transparent
+        );
+      }
+
+      /* Badges */
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 10px;
+        border-radius: 100px;
+        font-weight: 600;
+        font-size: 12px;
+        border: 1px solid var(--border);
+      }
+      .badge.gold {
+        background: color-mix(in oklab, var(--primary-accent) 25%, transparent);
+        color: var(--text-light);
+        border-color: color-mix(
+          in oklab,
+          var(--primary-accent) 40%,
+          var(--border)
+        );
+      }
+      .badge.sky {
+        background: color-mix(
+          in oklab,
+          var(--secondary-accent) 25%,
+          transparent
+        );
+        color: var(--text-light);
+        border-color: color-mix(
+          in oklab,
+          var(--secondary-accent) 40%,
+          var(--border)
+        );
+      }
+
+      /* Forms */
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .input,
+      select,
+      textarea {
+        background: var(--surface-1);
+        color: var(--text-light);
+        border: 1px solid var(--border);
+        padding: 10px 12px;
+        border-radius: 10px;
+      }
+      .input::placeholder,
+      textarea::placeholder {
+        color: var(--muted);
+      }
+      .input:focus,
+      textarea:focus,
+      select:focus {
+        outline: 3px solid var(--focus-ring);
+        border-color: var(--secondary-accent);
+      }
+
+      /* Alerts */
+      .alert {
+        padding: 12px 14px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        background: var(--surface-1);
+      }
+      .alert.info {
+        border-color: color-mix(in oklab, var(--info) 60%, var(--border));
+        background: color-mix(in oklab, var(--info) 18%, var(--surface-1));
+      }
+      .alert.success {
+        border-color: color-mix(in oklab, var(--success) 60%, var(--border));
+        background: color-mix(in oklab, var(--success) 18%, var(--surface-1));
+      }
+      .alert.warning {
+        border-color: color-mix(in oklab, var(--warning) 60%, var(--border));
+        background: color-mix(in oklab, var(--warning) 18%, var(--surface-1));
+      }
+      .alert.danger {
+        border-color: color-mix(in oklab, var(--danger) 60%, var(--border));
+        background: color-mix(in oklab, var(--danger) 18%, var(--surface-1));
+      }
+
+      /* Tables */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        padding: 10px 12px;
+        text-align: left;
+      }
+      thead th {
+        background: var(--surface-3);
+        border-bottom: 1px solid var(--border);
+      }
+      tbody tr {
+        border-bottom: 1px solid var(--border);
+      }
+
+      .pill {
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        display: inline-block;
+      }
+
+      .kdb {
+        padding: 2px 6px;
+        border-radius: 6px;
+        border: 1px solid var(--border);
+        background: var(--surface-1);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+      }
+
+      .section {
+        margin-top: 28px;
+      }
+      .muted {
+        color: var(--muted);
+      }
+      .link {
+        color: var(--secondary-accent);
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+
+      /* Contrast Examples */
+      .contrast-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 12px;
+      }
+      .sample {
+        border-radius: 12px;
+        padding: 12px;
+        border: 1px solid var(--border);
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+      .sample .box {
+        width: 56px;
+        height: 56px;
+        border-radius: 8px;
+        box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.12);
+      }
+      .sample .on {
+        font-weight: 600;
+      }
+
+      .row + .row {
+        margin-top: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap">
+        <div class="brand">
+          <span class="dot" aria-hidden="true"></span>
+          <div>
+            <strong>Revykanon – Color System</strong>
+            <div class="muted">
+              Demo page showcasing palette, tokens, and components
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="section">
+        <h1>Core Palette</h1>
+        <p>
+          These are the exact colors you provided, exposed as CSS variables.
+        </p>
+        <div class="grid">
+          <div class="card">
+            <div class="swatch">
+              <div class="chip" style="background: var(--background)"></div>
+              <div>
+                <div><strong>Background</strong></div>
+                <div class="code">--background: #1a2332</div>
+                <div class="muted">Dark, warm navy for the app canvas.</div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="swatch">
+              <div class="chip" style="background: var(--primary-accent)"></div>
+              <div>
+                <div><strong>Primary Accent</strong></div>
+                <div class="code">--primary-accent: #d4851f</div>
+                <div class="muted">
+                  Gold/amber used for primary actions and highlights.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="swatch">
+              <div
+                class="chip"
+                style="background: var(--secondary-accent)"
+              ></div>
+              <div>
+                <div><strong>Secondary Accent</strong></div>
+                <div class="code">--secondary-accent: #7eb3d3</div>
+                <div class="muted">
+                  Sky blue for links, secondary CTAs, info states.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="swatch">
+              <div class="chip" style="background: var(--text-light)"></div>
+              <div>
+                <div><strong>Text Light</strong></div>
+                <div class="code">--text-light: #f8f9fa</div>
+                <div class="muted">Default body text on dark backgrounds.</div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="swatch">
+              <div class="chip" style="background: var(--text-dark)"></div>
+              <div>
+                <div><strong>Text Dark</strong></div>
+                <div class="code">--text-dark: #2c3e50</div>
+                <div class="muted">
+                  Text on light elements (chips, buttons).
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Derived Tokens & Surfaces</h2>
+        <p>
+          Neutral surfaces, borders, and focus colors generated from the core
+          palette.
+        </p>
+        <div class="grid">
+          <div class="card">
+            <div class="row">
+              <span class="pill" style="background: var(--surface-1)"
+                >surface-1</span
+              >
+              <span class="code">color-mix(bg → 85%)</span>
+            </div>
+            <div class="row">
+              <span class="pill" style="background: var(--surface-2)"
+                >surface-2</span
+              >
+              <span class="code">color-mix(bg → 75%)</span>
+            </div>
+            <div class="row">
+              <span class="pill" style="background: var(--surface-3)"
+                >surface-3</span
+              >
+              <span class="code">color-mix(bg → 65%)</span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="row">
+              <span class="pill" style="background: var(--border)">border</span>
+              <span class="code">border from bg + sky</span>
+            </div>
+            <div class="row">
+              <span class="pill" style="background: var(--muted)">muted</span>
+              <span class="code">muted text</span>
+            </div>
+            <div class="row">
+              <span class="pill" style="background: var(--focus-ring)"
+                >focus-ring</span
+              >
+              <span class="code">focus outline</span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="row">
+              <span class="pill" style="background: var(--info)">info</span>
+              <span class="code">= secondary-accent</span>
+            </div>
+            <div class="row">
+              <span class="pill" style="background: var(--success)"
+                >success</span
+              >
+              <span class="code">derived from sky + green</span>
+            </div>
+            <div class="row">
+              <span class="pill" style="background: var(--warning)"
+                >warning</span
+              >
+              <span class="code">derived from gold</span>
+            </div>
+            <div class="row">
+              <span class="pill" style="background: var(--danger)">danger</span>
+              <span class="code">gold + red blend</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Buttons</h2>
+        <div class="row">
+          <button class="btn primary">Primary action</button>
+          <button class="btn secondary">Secondary action</button>
+          <button class="btn ghost">Ghost button</button>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Badges & Alerts</h2>
+        <div class="row" style="gap: 8px; margin-bottom: 12px">
+          <span class="badge gold">Gold badge</span>
+          <span class="badge sky">Sky badge</span>
+        </div>
+        <div class="grid">
+          <div class="alert info">
+            <strong>Info:</strong> Links and informational UI lean on the sky
+            blue.
+          </div>
+          <div class="alert success">
+            <strong>Success:</strong> Confirmations use a green blended from the
+            palette.
+          </div>
+          <div class="alert warning">
+            <strong>Warning:</strong> Use the warm amber for cautionary states.
+          </div>
+          <div class="alert danger">
+            <strong>Danger:</strong> Errors use a red tone harmonized with the
+            palette.
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Cards, Tables & Forms</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Card Title</h3>
+            <p>
+              Cards sit on <span class="code">--surface-2</span> with borders
+              from <span class="code">--border</span>.
+            </p>
+            <div class="row" style="margin-top: 10px">
+              <button class="btn primary">Do thing</button>
+              <a href="#" class="link">Secondary link</a>
+            </div>
+          </div>
+          <div class="card">
+            <table>
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Proposal #184</td>
+                  <td><span class="badge sky">Open</span></td>
+                  <td><button class="btn ghost">View</button></td>
+                </tr>
+                <tr>
+                  <td>Proposal #185</td>
+                  <td><span class="badge gold">In review</span></td>
+                  <td><button class="btn ghost">View</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card">
+            <div class="field">
+              <label for="i1">Your name</label>
+              <input id="i1" class="input" placeholder="Type here" />
+            </div>
+            <div class="field" style="margin-top: 10px">
+              <label for="i2">Message</label>
+              <textarea
+                id="i2"
+                class="input"
+                rows="4"
+                placeholder="Say hello"
+              ></textarea>
+            </div>
+            <div class="row" style="margin-top: 10px">
+              <select class="input">
+                <option>Choose option</option>
+                <option>One</option>
+                <option>Two</option>
+              </select>
+              <button class="btn primary">Submit</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Contrast Samples</h2>
+        <p>Quick glance at common foreground/background pairings.</p>
+        <div class="contrast-grid">
+          <div class="sample">
+            <div class="box" style="background: var(--background)"></div>
+            <div>
+              <div class="on">On Background → text-light</div>
+              <div class="muted">#1a2332 / #f8f9fa</div>
+            </div>
+          </div>
+          <div class="sample">
+            <div class="box" style="background: var(--surface-2)"></div>
+            <div>
+              <div class="on">On Surface-2 → text-light</div>
+              <div class="muted">surface neutral + white text</div>
+            </div>
+          </div>
+          <div class="sample">
+            <div class="box" style="background: var(--primary-accent)"></div>
+            <div>
+              <div class="on">On Primary → text-dark</div>
+              <div class="muted">#d4851f / #2c3e50</div>
+            </div>
+          </div>
+          <div class="sample">
+            <div class="box" style="background: var(--secondary-accent)"></div>
+            <div>
+              <div class="on">On Secondary → text-dark</div>
+              <div class="muted">#7eb3d3 / #2c3e50</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <div class="row" style="justify-content: space-between">
+          <div class="muted">© Revykanon – Color System Demo</div>
+          <div class="row" style="gap: 8px">
+            <span class="kdb">--primary-accent</span>
+            <span class="kdb">--secondary-accent</span>
+            <span class="kdb">--text-light</span>
+            <span class="kdb">--text-dark</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
