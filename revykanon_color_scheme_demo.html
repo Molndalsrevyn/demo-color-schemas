@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Revykanon – Tailwind Color Scheme Demo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Tailwind on-the-fly config
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            ui: {
+              bg: '#0f1115',          // app background
+              surface: '#141824',     // cards / panels
+              surface2: '#0b0f17',    // secondary surface
+              text: '#FFFFFF',        // primary text on dark
+              muted: '#CFCFCF',       // captions / placeholders
+              black: '#000000'        // overlays, shadows, borders
+            },
+            brand: {
+              yellow: '#FFEB3B',      // smiley / KAN…KUL
+              sky: '#74C9DA',         // smiley highlight / underline
+              magenta: '#A80F64',     // partner logo
+              pink: '#F5A8C4'         // partner accent
+            }
+          },
+          boxShadow: {
+            soft: '0 10px 24px 0 rgba(0,0,0,0.35)',
+          },
+          borderRadius: {
+            xl2: '1.25rem',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Smooth fonts */
+    html, body { height: 100%; }
+  </style>
+</head>
+<body class="min-h-screen bg-ui-bg text-ui-text antialiased">
+  <!-- Top Nav -->
+  <header class="sticky top-0 z-50 backdrop-blur supports-backdrop-blur:bg-ui-bg/70 bg-ui-bg/80 border-b border-white/10">
+    <nav class="container mx-auto px-4">
+      <div class="flex items-center gap-6 py-4">
+        <div class="flex items-center gap-2">
+          <span class="inline-flex h-8 w-8 rounded-lg bg-gradient-to-br from-brand-sky to-brand-magenta"></span>
+          <span class="font-semibold tracking-wide">Revykanon</span>
+        </div>
+        <ul class="hidden md:flex items-center gap-5 text-ui-muted">
+          <li><a class="hover:text-ui-text transition" href="#palette">Palette</a></li>
+          <li><a class="hover:text-ui-text transition" href="#buttons">Buttons</a></li>
+          <li><a class="hover:text-ui-text transition" href="#cards">Cards</a></li>
+          <li><a class="hover:text-ui-text transition" href="#forms">Forms</a></li>
+          <li><a class="hover:text-ui-text transition" href="#alerts">Alerts</a></li>
+          <li><a class="hover:text-ui-text transition" href="#table">Table</a></li>
+        </ul>
+        <div class="ml-auto flex items-center gap-3">
+          <button class="px-3 py-1.5 rounded-lg bg-ui-surface/60 border border-white/10 text-sm text-ui-muted hover:text-ui-text hover:bg-ui-surface transition">Sign in</button>
+          <button class="px-3 py-1.5 rounded-lg bg-brand-yellow text-black font-semibold hover:brightness-110 transition">Get Tickets</button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden">
+    <div class="pointer-events-none absolute inset-0 -z-10">
+      <div class="absolute -top-16 right-10 h-72 w-72 rounded-full blur-3xl opacity-20 bg-brand-sky"></div>
+      <div class="absolute -bottom-16 left-10 h-80 w-80 rounded-full blur-3xl opacity-20 bg-brand-magenta"></div>
+    </div>
+    <div class="container mx-auto px-4 py-16 md:py-24">
+      <div class="max-w-3xl">
+        <span class="inline-flex items-center gap-2 text-sm text-ui-muted bg-ui-surface/60 border border-white/10 px-3 py-1 rounded-full">New • Color system preview</span>
+        <h1 class="mt-4 text-4xl md:text-5xl font-bold leading-tight">A dark UI with bright accents for <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-sky via-brand-yellow to-brand-magenta">Revykanon</span></h1>
+        <p class="mt-4 text-lg text-ui-muted">This page demonstrates a compact color scheme wired into Tailwind classes, plus common components to copy‑paste.</p>
+        <div class="mt-8 flex items-center gap-3">
+          <a href="#buttons" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-brand-sky text-black font-semibold hover:brightness-110 shadow-soft ring-1 ring-white/10">Explore components</a>
+          <a href="#palette" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-ui-surface text-ui-text hover:bg-ui-surface/80 border border-white/10">View palette</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Palette -->
+  <section id="palette" class="border-t border-white/10 bg-ui-surface">
+    <div class="container mx-auto px-4 py-12">
+      <h2 class="text-xl font-semibold tracking-wide uppercase text-ui-muted">Color tokens</h2>
+      <p class="mt-2 text-ui-muted">All colors available via <code class="px-2 py-0.5 rounded bg-black/40 border border-white/10">bg-*</code>, <code class="px-2 py-0.5 rounded bg-black/40 border border-white/10">text-*</code>, <code class="px-2 py-0.5 rounded bg-black/40 border border-white/10">ring-*</code>, etc.</p>
+
+      <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- UI: text -->
+        <div class="rounded-xl p-4 bg-ui-surface2 border border-white/10">
+          <div class="flex items-center gap-3">
+            <div class="h-12 w-12 rounded-xl bg-ui-text border border-white/20"></div>
+            <div>
+              <div class="font-semibold">ui.text</div>
+              <div class="text-ui-muted text-sm">#FFFFFF</div>
+            </div>
+          </div>
+        </div>
+        <!-- UI: muted -->
+        <div class="rounded-xl p-4 bg-ui-surface2 border border-white/10">
+          <div class="flex items-center gap-3">
+            <div class="h-12 w-12 rounded-xl bg-ui-muted border border-white/10"></div>
+            <div>
+              <div class="font-semibold">ui.muted</div>
+              <div class="text-ui-muted text-sm">#CFCFCF</div>
+            </div>
+          </div>
+        </div>
+        <!-- UI: black -->
+        <div class="rounded-xl p-4 bg-ui-surface2 border border-white/10">
+          <div class="flex items-center gap-3">
+            <div class="h-12 w-12 rounded-xl bg-ui-black border border-white/20"></div>
+            <div>
+              <div class="font-semibold">ui.black</div>
+              <div class="text-ui-muted text-sm">#000000</div>
+            </div>
+          </div>
+        </div>
+        <!-- Brand: yellow -->
+        <div class="rounded-xl p-4 bg-ui-surface2 border border-white/10">
+          <div class="flex items-center gap-3">
+            <div class="h-12 w-12 rounded-xl bg-brand-yellow"></div>
+            <div>
+              <div class="font-semibold">brand.yellow</div>
+              <div class="text-ui-muted text-sm">#FFEB3B</div>
+            </div>
+          </div>
+        </div>
+        <!-- Brand: sky -->
+        <div class="rounded-xl p-4 bg-ui-surface2 border border-white/10">
+          <div class="flex items-center gap-3">
+            <div class="h-12 w-12 rounded-xl bg-brand-sky"></div>
+            <div>
+              <div class="font-semibold">brand.sky</div>
+              <div class="text-ui-muted text-sm">#74C9DA</div>
+            </div>
+          </div>
+        </div>
+        <!-- Brand: magenta & pink gradient -->
+        <div class="rounded-xl p-4 bg-ui-surface2 border border-white/10">
+          <div class="flex items-center gap-3">
+            <div class="h-12 w-12 rounded-xl bg-gradient-to-br from-brand-magenta to-brand-pink"></div>
+            <div>
+              <div class="font-semibold">brand.magenta → brand.pink</div>
+              <div class="text-ui-muted text-sm">#A80F64 → #F5A8C4</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-6 text-xs text-ui-muted">Note: brand hues are approximations from imagery; adjust if official tokens differ.</div>
+    </div>
+  </section>
+
+  <!-- Buttons -->
+  <section id="buttons" class="border-t border-white/10">
+    <div class="container mx-auto px-4 py-12">
+      <h2 class="text-xl font-semibold tracking-wide uppercase text-ui-muted">Buttons</h2>
+      <div class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div class="space-y-3 p-5 rounded-xl bg-ui-surface border border-white/10">
+          <div class="text-sm text-ui-muted">Primary</div>
+          <button class="w-full px-4 py-3 rounded-xl bg-brand-yellow text-black font-semibold hover:brightness-110 shadow-soft ring-1 ring-black/5">Buy Now</button>
+          <button class="w-full px-4 py-3 rounded-xl bg-brand-sky text-black font-semibold hover:brightness-110 shadow-soft ring-1 ring-black/5">Secondary</button>
+        </div>
+        <div class="space-y-3 p-5 rounded-xl bg-ui-surface border border-white/10">
+          <div class="text-sm text-ui-muted">Outline / Ghost</div>
+          <button class="w-full px-4 py-3 rounded-xl bg-transparent border border-white/20 text-ui-text hover:bg-white/5">Outline</button>
+          <button class="w-full px-4 py-3 rounded-xl bg-white/5 text-ui-text hover:bg-white/10">Ghost</button>
+        </div>
+        <div class="space-y-3 p-5 rounded-xl bg-ui-surface border border-white/10">
+          <div class="text-sm text-ui-muted">Destructive + Subtle</div>
+          <button class="w-full px-4 py-3 rounded-xl bg-brand-magenta text-white font-semibold hover:brightness-110">Delete</button>
+          <button class="w-full px-4 py-3 rounded-xl bg-ui-surface2 text-ui-muted hover:text-ui-text border border-white/10">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cards -->
+  <section id="cards" class="border-t border-white/10 bg-ui-surface">
+    <div class="container mx-auto px-4 py-12">
+      <h2 class="text-xl font-semibold tracking-wide uppercase text-ui-muted">Cards</h2>
+      <div class="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <!-- Event card -->
+        <article class="rounded-xl overflow-hidden border border-white/10 bg-ui-surface2 shadow-soft">
+          <div class="h-32 bg-gradient-to-r from-brand-sky via-brand-yellow to-brand-magenta"></div>
+          <div class="p-5 space-y-3">
+            <h3 class="text-lg font-semibold">Opening Night</h3>
+            <p class="text-ui-muted">Join us for a night of comedy and music. Limited seats available.</p>
+            <div class="flex items-center justify-between">
+              <span class="text-sm text-ui-muted">Fri • 19:30</span>
+              <button class="px-3 py-1.5 rounded-lg bg-brand-yellow text-black font-semibold">Reserve</button>
+            </div>
+          </div>
+        </article>
+        <!-- Info card -->
+        <article class="rounded-xl overflow-hidden border border-white/10 bg-ui-surface2 shadow-soft p-5">
+          <h3 class="text-lg font-semibold">What is Revykanon?</h3>
+          <p class="mt-2 text-ui-muted">A playful platform for sketches, shows, and good vibes—styled here with a compact color system.</p>
+          <a class="inline-flex mt-4 items-center gap-2 text-brand-sky hover:underline" href="#">Learn more</a>
+        </article>
+        <!-- Ticket card -->
+        <article class="rounded-xl overflow-hidden border border-brand-magenta/40 bg-ui-surface2 shadow-soft">
+          <div class="p-5 space-y-3">
+            <h3 class="text-lg font-semibold">Season Pass</h3>
+            <p class="text-ui-muted">Access all events with premium seating and merch.</p>
+            <div class="flex items-center gap-2">
+              <span class="text-3xl font-bold text-brand-pink">1 299 kr</span>
+              <span class="text-ui-muted">/ year</span>
+            </div>
+            <button class="px-4 py-2 rounded-xl bg-brand-magenta text-white font-semibold hover:brightness-110">Get Pass</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Forms -->
+  <section id="forms" class="border-t border-white/10">
+    <div class="container mx-auto px-4 py-12">
+      <h2 class="text-xl font-semibold tracking-wide uppercase text-ui-muted">Forms</h2>
+      <form class="mt-6 grid gap-4 md:grid-cols-2 bg-ui-surface p-6 rounded-xl border border-white/10">
+        <div>
+          <label class="block text-sm text-ui-muted mb-1">Full name</label>
+          <input class="w-full rounded-lg bg-ui-surface2 border border-white/10 px-3 py-2 text-ui-text placeholder:text-ui-muted focus:outline-none focus:ring-2 focus:ring-brand-sky/70" placeholder="Ada Lovelace"/>
+        </div>
+        <div>
+          <label class="block text-sm text-ui-muted mb-1">Email</label>
+          <input type="email" class="w-full rounded-lg bg-ui-surface2 border border-white/10 px-3 py-2 text-ui-text placeholder:text-ui-muted focus:outline-none focus:ring-2 focus:ring-brand-sky/70" placeholder="ada@revykanon.se"/>
+        </div>
+        <div class="md:col-span-2">
+          <label class="block text-sm text-ui-muted mb-1">Message</label>
+          <textarea rows="4" class="w-full rounded-lg bg-ui-surface2 border border-white/10 px-3 py-2 text-ui-text placeholder:text-ui-muted focus:outline-none focus:ring-2 focus:ring-brand-sky/70" placeholder="Tell us what you think…"></textarea>
+        </div>
+        <div class="md:col-span-2 flex items-center justify-between">
+          <label class="inline-flex items-center gap-2 text-sm text-ui-muted">
+            <input type="checkbox" class="rounded border-white/20 bg-ui-surface2 text-brand-yellow focus:ring-brand-yellow/60"/>
+            Subscribe to updates
+          </label>
+          <button class="px-4 py-2 rounded-xl bg-brand-sky text-black font-semibold hover:brightness-110">Send</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Alerts & badges -->
+  <section id="alerts" class="border-t border-white/10 bg-ui-surface">
+    <div class="container mx-auto px-4 py-12">
+      <h2 class="text-xl font-semibold tracking-wide uppercase text-ui-muted">Alerts & Badges</h2>
+      <div class="mt-6 grid gap-4 md:grid-cols-3">
+        <div class="rounded-xl p-4 bg-ui-surface2 border border-white/10">
+          <div class="text-sm font-semibold">Info</div>
+          <p class="text-ui-muted mt-1">Your tickets are ready for download.</p>
+          <div class="mt-3 inline-flex items-center gap-2 rounded-lg bg-brand-sky/15 text-brand-sky px-3 py-1.5 ring-1 ring-brand-sky/30">● Info</div>
+        </div>
+        <div class="rounded-xl p-4 bg-ui-surface2 border border-white/10">
+          <div class="text-sm font-semibold">Success</div>
+          <p class="text-ui-muted mt-1">Payment confirmed. See you soon!</p>
+          <div class="mt-3 inline-flex items-center gap-2 rounded-lg bg-brand-yellow/20 text-black px-3 py-1.5 ring-1 ring-brand-yellow/30">● Success</div>
+        </div>
+        <div class="rounded-xl p-4 bg-ui-surface2 border border-white/10">
+          <div class="text-sm font-semibold">Warning</div>
+          <p class="text-ui-muted mt-1">Seats are filling up quickly.</p>
+          <div class="mt-3 inline-flex items-center gap-2 rounded-lg bg-brand-magenta/20 text-brand-pink px-3 py-1.5 ring-1 ring-brand-magenta/30">● Warning</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Table -->
+  <section id="table" class="border-t border-white/10">
+    <div class="container mx-auto px-4 py-12">
+      <h2 class="text-xl font-semibold tracking-wide uppercase text-ui-muted">Table</h2>
+      <div class="mt-6 overflow-hidden rounded-xl border border-white/10 bg-ui-surface">
+        <table class="w-full text-left">
+          <thead class="bg-white/5 text-ui-muted">
+            <tr>
+              <th class="px-4 py-3 font-semibold">Show</th>
+              <th class="px-4 py-3 font-semibold">Date</th>
+              <th class="px-4 py-3 font-semibold">Status</th>
+              <th class="px-4 py-3 font-semibold text-right">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-t border-white/10 hover:bg-white/5">
+              <td class="px-4 py-3">Premiär</td>
+              <td class="px-4 py-3 text-ui-muted">12 Nov, 19:30</td>
+              <td class="px-4 py-3"><span class="px-2 py-1 rounded bg-brand-yellow text-black text-xs font-semibold">Available</span></td>
+              <td class="px-4 py-3 text-right"><button class="px-3 py-1.5 rounded-lg bg-brand-sky text-black font-semibold">Book</button></td>
+            </tr>
+            <tr class="border-t border-white/10 hover:bg-white/5">
+              <td class="px-4 py-3">Lördagsrevyn</td>
+              <td class="px-4 py-3 text-ui-muted">15 Nov, 18:00</td>
+              <td class="px-4 py-3"><span class="px-2 py-1 rounded bg-brand-magenta/20 text-brand-pink text-xs font-semibold ring-1 ring-brand-magenta/40">Few left</span></td>
+              <td class="px-4 py-3 text-right"><button class="px-3 py-1.5 rounded-lg bg-brand-yellow text-black font-semibold">Book</button></td>
+            </tr>
+            <tr class="border-t border-white/10 hover:bg-white/5">
+              <td class="px-4 py-3">Söndagskul</td>
+              <td class="px-4 py-3 text-ui-muted">23 Nov, 17:00</td>
+              <td class="px-4 py-3"><span class="px-2 py-1 rounded bg-white/10 text-ui-muted text-xs">Coming soon</span></td>
+              <td class="px-4 py-3 text-right"><button class="px-3 py-1.5 rounded-lg bg-ui-surface2 text-ui-muted border border-white/10">Notify</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/10 bg-ui-surface">
+    <div class="container mx-auto px-4 py-10">
+      <div class="grid gap-6 md:grid-cols-3">
+        <div>
+          <div class="font-semibold">Revykanon</div>
+          <p class="mt-2 text-ui-muted">Dark UI, bright accents. Built with Tailwind and your provided palette.</p>
+        </div>
+        <div>
+          <div class="font-semibold">Colors</div>
+          <ul class="mt-2 space-y-1 text-ui-muted">
+            <li><span class="inline-block w-2 h-2 rounded-full bg-ui-text mr-2"></span> #FFFFFF</li>
+            <li><span class="inline-block w-2 h-2 rounded-full bg-ui-muted mr-2"></span> #CFCFCF</li>
+            <li><span class="inline-block w-2 h-2 rounded-full bg-ui-black mr-2"></span> #000000</li>
+            <li><span class="inline-block w-2 h-2 rounded-full bg-brand-yellow mr-2"></span> #FFEB3B</li>
+            <li><span class="inline-block w-2 h-2 rounded-full bg-brand-sky mr-2"></span> #74C9DA</li>
+            <li><span class="inline-block w-2 h-2 rounded-full bg-brand-magenta mr-2"></span> #A80F64</li>
+            <li><span class="inline-block w-2 h-2 rounded-full bg-brand-pink mr-2"></span> #F5A8C4</li>
+          </ul>
+        </div>
+        <div>
+          <div class="font-semibold">Actions</div>
+          <div class="mt-3 flex flex-wrap gap-2">
+            <button class="px-3 py-1.5 rounded-lg bg-brand-sky text-black font-semibold">Copy palette</button>
+            <button class="px-3 py-1.5 rounded-lg bg-brand-yellow text-black font-semibold">Get tickets</button>
+          </div>
+        </div>
+      </div>
+      <div class="mt-8 text-xs text-ui-muted">© 2025 Revykanon. UI colors: #FFFFFF (text), #CFCFCF (muted), #000000 (overlays). Brand: #FFEB3B, #74C9DA, #A80F64, #F5A8C4.</div>
+    </div>
+  </footer>
+</body>
+</html>
